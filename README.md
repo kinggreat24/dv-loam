@@ -93,7 +93,7 @@ The package is used to refine the relative transform of loop pairs.
 ### 3. Run examples
 ```
 ## run kitti
-roslaunch d2vl_slam d2vl_slam_kitti.launch sequence:=04
+roslaunch d2vl_slam d2vl_slam_kitti.launch sequence:=05
 ```
 
 ### 4. To do list (in order)
