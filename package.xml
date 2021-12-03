@@ -2,9 +2,9 @@
 <package>
   <name>d2vl_slam</name>
   <version>0.0.1</version>
-  <description>ORB SLAM2 ros implementation.</description>
+  <description>dv-loam.</description>
 
-  <maintainer email="haller@unternehmertum.de">Lennart Haller</maintainer>
+  <maintainer email="kinggreat24@whu.edu.cn">Lennart Haller</maintainer>
 
   <license>GPLv3</license>
 
@@ -29,7 +29,7 @@
   <run_depend>dynamic_reconfigure</run_depend>
   <run_depend>message_runtime</run_depend>
   <run_depend>visualization_msgs</run_depend>
+  
   <export>
-
   </export>
 </package>
