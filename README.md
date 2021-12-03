@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # DV-LOAM
 ## 1. Building dv-loam
 we propose a direct vision LiDAR fusion SLAM framework that consists of three modules. Firstly, a two-staged direct visual odometry module, which consists of a frame-to-frame tracking step, and an improved sliding window based thinning step, is proposed to estimate the accurate pose of the camera while maintaining efficiency. Secondly, every time a keyframe is generated, a dynamic objects considered LiDAR mapping module is utilized to refine the pose of the keyframe to obtain higher positioning accuracy and better robustness. Finally, a Parallel Global and Local Search Loop Closure Detection (PGLS-LCD) module that combines visual Bag of Words (BoW) and LiDAR-Iris feature is applied for place recognition to correct the accumulated drift and maintain a globally consistent map. 
@@ -110,7 +109,3 @@ Thanks for
 - [loam-livox](https://github.com/hku-mars/loam_livox.git)
 - [LiDAR-iris](https://github.com/BigMoWangying/LiDAR-Iris.git)
 - ORB-SLAM2.
-=======
-# DV-LOAM:
-## The code is being sorted out, we will upload the code as soon as possible.
->>>>>>> db271329514f7a65e71de04339fa54a13bef4469
