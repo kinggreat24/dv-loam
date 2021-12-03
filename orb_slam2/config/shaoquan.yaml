@@ -1,0 +1,95 @@
+%YAML:1.0
+
+#--------------------------------------------------------------------------------------------
+# Camera Parameters. Adjust them!
+#--------------------------------------------------------------------------------------------
+
+# Camera calibration and distortion parameters (OpenCV) 
+Camera.width: 1024
+Camera.height: 768
+
+Camera.fx: 1155.3798
+Camera.fy: 1157.6537
+Camera.cx: 514.5750
+Camera.cy: 398.0838
+
+Camera.k1: -0.08116
+Camera.k2: 0.3634
+Camera.p1: 0.0001589
+Camera.p2: 0.0007295
+Camera.k3: 0.0
+
+# Camera frames per second 
+Camera.fps: 10.0
+
+# IR projector baseline times fx (aprox.)
+Camera.bf: 40.0
+
+# Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
+Camera.RGB: 0
+
+# Close/Far threshold. Baseline times.
+ThDepth: 40.0
+
+
+#--------------------------------------------------------------------------------------------
+# ORB Parameters
+#--------------------------------------------------------------------------------------------
+
+# ORB Extractor: Number of features per image
+ORBextractor.nFeatures: 2000
+
+# ORB Extractor: Scale factor between levels in the scale pyramid 	
+ORBextractor.scaleFactor: 1.2
+
+# ORB Extractor: Number of levels in the scale pyramid	
+ORBextractor.nLevels: 8
+
+# ORB Extractor: Fast threshold
+# Image is divided in a grid. At each cell FAST are extracted imposing a minimum response.
+# Firstly we impose iniThFAST. If no corners are detected we impose a lower value minThFAST
+# You can lower these values if your images have low contrast			
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7
+
+
+# CamLidar Extrinsic Parameter
+use_lidar: 1
+extrinsicMatrix.need_inverse: 0
+extrinsicMatrix: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ 0.0004276802385584, -0.9999672484946, -0.008084491683471, -0.01198459927713,
+          -0.007210626507497,  0.008081198471645, -0.9999413164504, -0.05403984729748,
+           0.9999738645903,  0.0004859485810390, -0.007206933692422, -0.2921968648686,
+           0,0,0,1]
+
+Lidar_Name: "HDL-64E"
+
+# Tracker Setting
+# ScaleEstimator : None, TDistributionScale
+# WeightFunction attribute : None, TDistributionWeight
+# max leve : seq2 = 1, seq3 = 3->0, seq12 = 1, seq20 = 0, seq21 = 1
+Tracker.levels: 3
+Tracker.min_level: 0
+Tracker.max_level: 2
+Tracker.max_iteration: 100
+Tracker.scale_estimator: "TDistributionScale"
+Tracker.weight_function: "TDistributionWeight"
+
+
+
+#--------------------------------------------------------------------------------------------
+# Viewer Parameters
+#--------------------------------------------------------------------------------------------
+Viewer.KeyFrameSize: 0.1
+Viewer.KeyFrameLineWidth: 1
+Viewer.GraphLineWidth: 1
+Viewer.PointSize:2
+Viewer.CameraSize: 0.15
+Viewer.CameraLineWidth: 2
+Viewer.ViewpointX: 0
+Viewer.ViewpointY: -10
+Viewer.ViewpointZ: -0.1
+Viewer.ViewpointF: 2000

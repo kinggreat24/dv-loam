@@ -1,0 +1,40 @@
+<launch>
+
+  <node name="d2vl_slam_visual_lidar" pkg="d2vl_slam"
+      type="d2vl_slam_visual_lidar" output="screen">
+
+      <param name="path_to_sequence" type="string" 
+        value="/media/kinggreat24/T7/data/bunker_rosbag_data/campus_bigger" />
+      <param name="lidar_type" type="int" value="0" />
+    
+      <param name="publish_pointcloud" type="bool" value="true" />
+      <param name="publish_pose" type="bool" value="true" />
+      <param name="localize_only" type="bool" value="false" />
+      <param name="reset_map" type="bool" value="false" />
+
+      <!-- static parameters -->
+      <param name="load_map" type="bool" value="false" />
+      <param name="map_file" type="string" value="map.bin" />
+      <param name="voc_file" type="string" value="$(find d2vl_slam)/orb_slam2/Vocabulary/ORBvoc.txt" />
+
+      <param name="pointcloud_frame_id" type="string" value="map" />
+      <param name="camera_frame_id" type="string" value="camera_link" />
+      <param name="min_num_kf_in_map" type="int" value="5" />
+
+      <!-- parameters -->
+      <param name="setting_file_param" type="string" value="$(find d2vl_slam)/orb_slam2/config/zed_velodyne.yaml" />
+
+      
+      <param name="gt_pose_file"                type="string"  value="" />
+      <param name="path_to_save_trajectory"     type="string"  value="/home/kinggreat24/direct_lidar_align_ws/src/d2vl_slam/results/CAMPUS/campus_pred.txt" />
+      <param name="path_to_save_gt_trajectory"  type="string"  value="" />
+      <param name="path_to_save_time"           type="string"  value="/home/kinggreat24/direct_lidar_align_ws/src/d2vl_slam/results/CAMPUS/campus_time.txt" />
+      
+      <!-- 结束帧ID -->
+      <param name="end_frame"                   type="int"     value="4500" />
+  </node>
+  
+  <!-- rviz configuration -->
+  <node name="d2vl_slam_rviz" pkg="rviz" type="rviz"  args="-d $(find d2vl_slam)/ros/config/rviz_config.rviz" output="screen"/>
+
+</launch>

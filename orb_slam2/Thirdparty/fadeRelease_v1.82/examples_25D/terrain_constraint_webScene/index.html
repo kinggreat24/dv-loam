@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<title>Geom Fade2.5D | </title>
+</head>
+
+<body> 
+	<h1 style="text-align: center;display: block;font-size: 2em;font-weight: bold; " >Geom Fade2.5D</h1>
+	<div style="width:1000px; margin:auto; position:relative; font-size: 9pt; color: #777777;">
+	<canvas id="cv" style="border: 1px solid;border-radius:7px" width="1000" height="680" ></canvas>
+	<div style="display:block;opacity:0.6;color:#000000;padding:15px;position:absolute;right:15px;top:15px;">Do you need a <br><a href="http://www.geom.at/licensing/">Commercial License</a>?</div>
+
+	<div style="display:block; color:#ffffff; padding:5px; position:absolute; left:15px; bottom:15px; background-color:#000000; border-radius:7px; border:1px solid #777777; font-family:Arial,sans-serif; opacity:0.4; pointer-events:none;">Drag mouse to rotate, use SHIFT to <br> zoom and CTRL to translate</div> 
+	<select id="render_mode_list" style="position:absolute; right:15px; bottom:15px;"  onclick="setRenderMode();">
+        <option>smooth</option>
+        <option>flat</option>
+	<option>points</option>
+	<option>wireframe</option>
+	</select>
+	</div>
+
+	<p style="text-align: center;display: block;font-size: 1em; ">Visit <a href="http://www.geom.at/">Geom Software</a></p>
+
+
+	<script type="text/javascript" src="jsc3d.js"></script>
+	<script type="text/javascript" src="jsc3d.ctm.js"></script>
+	<script type="text/javascript" src="jsc3d.touch.js"></script>
+	<script type="text/javascript">
+		var canvas = document.getElementById('cv');
+		var viewer = new JSC3D.Viewer(canvas);
+		var logoTimerID = 0;
+		viewer.setParameter('SceneUrl', '3d.obj');
+		viewer.setParameter('InitRotationX', -70);
+		viewer.setParameter('InitRotationY', 20);
+		viewer.setParameter('InitRotationZ', 0);
+		viewer.setParameter('ModelColor', '#CAA618');
+		viewer.setParameter('BackgroundColor1', '#FFFFFF');
+		viewer.setParameter('BackgroundColor2', '#383840');
+		viewer.setParameter('RenderMode', 'smooth');
+		viewer.setParameter('FaceCulling', 'off');
+		viewer.setParameter('ProgressBar', 'off');
+		viewer.init();
+		viewer.update();	
+		function setRenderMode() {
+			var modes = document.getElementById('render_mode_list');
+			switch(modes.selectedIndex) {
+			case 0:
+				viewer.setRenderMode('smooth');
+				break;
+			case 1:
+				viewer.setRenderMode('flat');
+				break;
+			case 2:
+				viewer.setRenderMode('point');
+				break;
+			case 3:
+				viewer.setRenderMode('wireframe');
+				break;
+			default:
+				viewer.setRenderMode('smooth');
+				break;
+			}
+			viewer.update();
+		}
+	</script>
+</body>
+

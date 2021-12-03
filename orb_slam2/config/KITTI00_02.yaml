@@ -1,0 +1,126 @@
+%YAML:1.0
+
+#--------------------------------------------------------------------------------------------
+# Camera Parameters. Adjust them!
+#--------------------------------------------------------------------------------------------
+
+# Camera calibration and distortion parameters (OpenCV) 
+Camera.fx: 718.856
+Camera.fy: 718.856
+Camera.cx: 607.1928
+Camera.cy: 185.2157
+
+
+Camera.k1: 0.0
+Camera.k2: 0.0
+Camera.p1: 0.0
+Camera.p2: 0.0
+Camera.k3: 0.0
+
+Camera.width: 1241
+Camera.height: 376
+
+# Camera frames per second 
+Camera.fps: 10
+
+# IR projector baseline times fx (aprox.)
+Camera.bf: 40.0
+
+# Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
+Camera.RGB: 0
+
+# Close/Far threshold. Baseline times.
+ThDepth: 40.0
+
+
+#--------------------------------------------------------------------------------------------
+# ORB Parameters
+#--------------------------------------------------------------------------------------------
+
+# ORB Extractor: Number of features per image
+ORBextractor.nFeatures: 2000
+
+# ORB Extractor: Scale factor between levels in the scale pyramid 	
+ORBextractor.scaleFactor: 1.2
+
+# ORB Extractor: Number of levels in the scale pyramid	
+ORBextractor.nLevels: 8
+
+# ORB Extractor: Fast threshold
+# Image is divided in a grid. At each cell FAST are extracted imposing a minimum response.
+# Firstly we impose iniThFAST. If no corners are detected we impose a lower value minThFAST
+# You can lower these values if your images have low contrast			
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7
+
+
+# CamLidar Extrinsic Parameter
+use_lidar: 1
+extrinsicMatrix.need_inverse: 0
+extrinsicMatrix: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [ 0.0004276802385584, -0.9999672484946, -0.008084491683471, -0.01198459927713,
+          -0.007210626507497,  0.008081198471645, -0.9999413164504, -0.05403984729748,
+           0.9999738645903,  0.0004859485810390, -0.007206933692422, -0.2921968648686,
+           0,0,0,1]
+
+Lidar_Name: "HDL-64E"
+
+## Ground Segmentation
+LineFitGroundSegmentation.n_threads: 4            # number of threads to use.
+LineFitGroundSegmentation.r_min: 0.5              # minimum point distance.
+LineFitGroundSegmentation.r_max: 80               # maximum point distance.
+LineFitGroundSegmentation.n_bins: 60             # number of radial bins.
+LineFitGroundSegmentation.n_segments: 180         # number of radial segments.
+LineFitGroundSegmentation.max_dist_to_line: 0.1  # maximum vertical distance of point to line to be considered ground.
+LineFitGroundSegmentation.sensor_height: 1.8      # sensor height above ground.
+LineFitGroundSegmentation.max_slope: 0.3          # maximum slope of a ground line.
+LineFitGroundSegmentation.max_fit_error: 0.05     # maximum error of a point during line fit.
+LineFitGroundSegmentation.long_threshold: 2.0     # distance between points after which they are considered far from each other.
+LineFitGroundSegmentation.max_long_height: 0.2    # maximum height change to previous point in long line.
+LineFitGroundSegmentation.max_start_height: 0.2   # maximum difference to estimated ground height to start a new line.
+LineFitGroundSegmentation.line_search_angle: 0.1  # how far to search in angular direction to find a line [rad].
+LineFitGroundSegmentation.kitti_camera_cooridinate: 0 # Is pointcloud in kitti camera cooridinate(front -z  right-x, bottom-y)
+LineFitGroundSegmentation.visualize: 0            # visualize segmentation result - USE ONLY FOR DEBUGGING
+
+
+# Tracker Setting
+# ScaleEstimator : None, TDistributionScale
+# WeightFunction attribute : None, TDistributionWeight
+# max leve : seq2 = 1, seq3 = 3->0, seq12 = 1, seq20 = 0, seq21 = 1
+Tracker.levels: 3
+Tracker.min_level: 0
+Tracker.max_level: 2
+Tracker.max_iteration: 100
+Tracker.scale_estimator: "TDistributionScale"
+Tracker.weight_function: "TDistributionWeight"
+
+Tracker.feature_scale_estimator: "None"
+Tracker.feature_weight_function: "HuberWeight"
+
+
+##Lidar IRIS loopdetector
+LidarIris.nscale: 4
+LidarIris.minWaveLength: 18
+LidarIris.mult: 1.6
+LidarIris.sigmaOnf: 0.75
+LidarIris.matchNum: 2  #0 for kitti "00","05" only same direction loops; 
+                       #1 for kitti "08" only reverse loops; 2 for both same and reverse loops*/
+
+
+                       
+#--------------------------------------------------------------------------------------------
+# Viewer Parameters
+#--------------------------------------------------------------------------------------------
+Viewer.KeyFrameSize: 0.1
+Viewer.KeyFrameLineWidth: 1
+Viewer.GraphLineWidth: 1
+Viewer.PointSize:2
+Viewer.CameraSize: 0.15
+Viewer.CameraLineWidth: 2
+Viewer.ViewpointX: 0
+Viewer.ViewpointY: -10
+Viewer.ViewpointZ: -0.1
+Viewer.ViewpointF: 2000

@@ -1,0 +1,131 @@
+%YAML:1.0
+
+# Camera calibration and distortion parameters (OpenCV) 
+Camera.width: 1280
+Camera.height: 720
+
+Camera.fx: 529.64
+Camera.fy: 529.645
+Camera.cx: 639.045
+Camera.cy: 356.4075
+
+Camera.k1: -0.0
+Camera.k2: 0.00
+Camera.p1: 0.0
+Camera.p2: 0.0
+
+Camera.d0: 0.0
+Camera.d1: 0.0
+Camera.d2: 0.0
+Camera.d3: 0.0
+Camera.d4: 0.0
+
+# Color order of the images (0: BGR, 1: RGB. It is ignored if images are grayscale)
+Camera.RGB: 0
+
+# CamLidar Extrinsic Parameter
+use_lidar: 1
+extrinsicMatrix.need_inverse: 1
+extrinsicMatrix: !!opencv-matrix
+   rows: 3
+   cols: 4
+   dt: d
+   data: [ 0.041688, -0.046796, 0.998034, -0.016100, 
+          -0.999124, 0.001642, 0.041810, 0.022844, 
+          -0.003595, -0.998903, -0.046686, -0.049066]
+
+##Lidar information
+Lidar_Name: "VLP-16"
+
+#HDL-64
+#64       Channels
+#360°     Horizontal FOV
+#26.8°    Vertical FOV （+2 ～ -24.8）
+#0.08°    angular resolution (azimuth)
+#~0.4°    Vertical Resolution
+Lidar.DepthMax: 80.0                         #激光雷达深度有效测量距离
+Lidar.N_SCAN: 64                             #激光雷达的线数
+Lidar.Horizon_SCAN: 1800                     #激光雷达每一个Ring上的激光点个数
+Lidar.HorizontalResolution: 0.2              #激光雷达水平分辨率
+Lidar.VerticalResolution: 0.425              #激光雷达垂直分辨率
+Lidar.TopAngle: 2.0                          #激光雷达最上面的ring的垂直角度
+Lidar.BaseAngle: 24.8                        #激光雷达最下面的ring的垂直角度(取的绝对值)
+Lidar.RingAngles: [2.00, 1.667, 1.333, 1.000, 0.776, 0.333, 0.000, -0.333,
+    -0.667, -1.000, -1.333, -1.667, -2.000, -2.333, -2.666, -3.000,
+    -3.333, -3.666, -4.000, -4.333, -4.666, -5.000, -5.333, -5.666,
+    -6.000, -6.333, -6.666, -7.000, -7.333, -7.666, -8.000, -8.333,
+    -8.833, -9.330, -9.830, -10.33, -10.833, -11.333, -11.833, -12.333,
+    -12.833, -13.333, -13.833, -14.333, -14.835, -15.333, -15.833, -12.333,
+    -16.833, -17.333, -17.833, -18.333, -18.833, -19.333, -19.833, -20.333,
+    -20.833, -21.333, -21.833, -22.333, - 22.833, -23.333, -23.833, -24.33]                         #激光雷达每一个ring的垂直角度(如果有矫正文件)
+Lidar.GroundScanId: 60                       #激光雷达扫描到地上的ring id
+Lidar.ScanPeriod: 10                         #激光频率（10HZ）
+
+Lidar.SensorMountAngle: 0.0                  #地面点起伏阈值
+Lidar.SegmentTheta: 1.047                    #点云分割时的角度跨度上限（π/3）
+Lidar.SegmentValidPointNum: 5                #最小有效点云簇的个数
+Lidar.SegmentValidLineNum: 3                 #最小线簇
+Lidar.FeasibleSegment: 30                    #可见点簇
+
+
+# Vocabulary
+LoopClosure.f_vocabulary: "/home/kinggreat24/direct_lidar_align_ws/src/direct_lidar_alignment/Vocabulary/ORBvoc.txt.bin"
+LoopClosure.line_f_vocabulary: "/home/kinggreat24/direct_lidar_align_ws/src/direct_lidar_alignment/Vocabulary/lbd_vocab_larger.yml.gz"
+
+##ISC feature params
+ISC.sector_width: 60
+ISC.ring_height:  20
+ISC.max_dis:      90.0
+
+
+
+# ORB Extractor
+ORBextractor.nFeatures: 1000
+ORBextractor.scaleFactor: 1.2
+ORBextractor.nLevels: 8
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7
+
+
+## Ground Segmentation
+LineFitGroundSegmentation.n_threads: 4            # number of threads to use.
+
+LineFitGroundSegmentation.r_min: 0.5              # minimum point distance.
+LineFitGroundSegmentation.r_max: 80               # maximum point distance.
+LineFitGroundSegmentation.n_bins: 60             # number of radial bins.
+LineFitGroundSegmentation.n_segments: 180         # number of radial segments.
+
+LineFitGroundSegmentation.max_dist_to_line: 0.1  # maximum vertical distance of point to line to be considered ground.
+
+LineFitGroundSegmentation.sensor_height: 0.5      # sensor height above ground.
+LineFitGroundSegmentation.max_slope: 0.3          # maximum slope of a ground line.
+LineFitGroundSegmentation.max_fit_error: 0.05     # maximum error of a point during line fit.
+LineFitGroundSegmentation.long_threshold: 2.0     # distance between points after which they are considered far from each other.
+LineFitGroundSegmentation.max_long_height: 0.2    # maximum height change to previous point in long line.
+LineFitGroundSegmentation.max_start_height: 0.2   # maximum difference to estimated ground height to start a new line.
+LineFitGroundSegmentation.line_search_angle: 0.1  # how far to search in angular direction to find a line [rad].
+
+LineFitGroundSegmentation.kitti_camera_cooridinate: 0 # Is pointcloud in kitti camera cooridinate(front -z  right-x, bottom-y)
+LineFitGroundSegmentation.visualize: 0            # visualize segmentation result - USE ONLY FOR DEBUGGING
+
+
+
+# Tracker Setting
+# ScaleEstimator : None, TDistributionScale
+# WeightFunction attribute : None, TDistributionWeight
+# max leve : seq2 = 1, seq3 = 3->0, seq12 = 1, seq20 = 0, seq21 = 1
+Tracker.levels: 3
+Tracker.min_level: 0
+Tracker.max_level: 2
+Tracker.max_iteration: 100
+Tracker.scale_estimator: "TDistributionScale"
+Tracker.weight_function: "TDistributionWeight"
+
+
+##Lidar IRIS loopdetector
+LidarIris.nscale: 4
+LidarIris.minWaveLength: 18
+LidarIris.mult: 1.6
+LidarIris.sigmaOnf: 0.75
+LidarIris.matchNum: 2  #0 for kitti "00","05" only same direction loops; 
+                       #1 for kitti "08" only reverse loops; 2 for both same and reverse loops*/
